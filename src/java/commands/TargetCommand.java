@@ -25,6 +25,10 @@ public class TargetCommand implements Command {
         this.target = target;
         this.title = title;
     }
+
+    public String getTitle() {
+        return title;
+    }
     
     @Override
     public String execute(HttpServletRequest request) {

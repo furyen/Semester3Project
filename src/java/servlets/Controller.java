@@ -46,19 +46,20 @@ public class Controller extends HttpServlet {
         String commandString = request.getParameter("command");
 
 
-        if (!"login_command".equals(commandString)) {
+        if (!"employeeLogin".equals(commandString)&&!"customerLogin".equals(commandString)) {
             session.setAttribute("lastcommand", commandString);
         }
         
         request.setAttribute("style", "h1{color:blue;}");
         request.setAttribute("stylsheetfile", "my.css");
 
-        String path = "/login.jsp";
+        String path = "/Login.jsp";
         if ((username != null /* && notTimedOut(session)*/)
-                || "login_command".equals(commandString)) {
+                || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString)) {
 
             Command command = Factory.getInstance().getCommand(commandString);
             path = command.execute(request);
+            
         }
         if (!"logout_command".equals(commandString)) {
             if (username != null && notTimedOut(session) == false) {

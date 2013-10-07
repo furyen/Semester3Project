@@ -22,9 +22,10 @@ public class LoginCommand extends TargetCommand {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println("login: " + username);
-        if(Factory.getInstance().checkUserLogin(username, password))
+        
+        if(Factory.getInstance().checkUserLogin(username, password,request.getParameter("command")))
         {
-            System.out.println("login: " + username);
+           
             request.getSession().setAttribute("username", username);
             
             String lastCommand = (String) request.getSession()

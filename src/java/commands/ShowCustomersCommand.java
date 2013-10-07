@@ -17,7 +17,7 @@ public class ShowCustomersCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(
                 "customers", 
-                Factory.getInstance().getCustomers());
+                Factory.getBankController().getCustomers());
         return super.execute(request);
     }
 
