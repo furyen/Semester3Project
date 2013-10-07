@@ -1,0 +1,15 @@
+/* 
+    Document   : my
+    Created on : 02-10-2013, 13:22:58
+    Author     : hsty
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+    
+    
+}
+
+.myclass { color:chocolate; }
