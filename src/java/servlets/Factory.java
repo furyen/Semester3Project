@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.BankDataController;
 import model.Customer;
 
 /**
@@ -58,6 +59,9 @@ public class Factory {
     public static Factory getInstance()
     {
         return instance;
+    }
+    public static BankDataController getBankController(){
+      return DummyBankController.getInstance();
     }
     
     public Command getCommand(String commandString)
