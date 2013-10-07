@@ -13,7 +13,12 @@
   </head>
   <body>
     <h1>Add customer</h1>
-    <h2>Todo:add a form to allow new users </h2>
+    <form action="Controller">
+        
+        <input type="text" name="command" value="addcustomer">
+        <input type="hidden" name="command" value="addcustomer">
+        
+    </form>
     <a href="Controller?command=main">Goto main page</a>
     <a href="Controller?command=listcustomers">See all customers</a>
   </body>
