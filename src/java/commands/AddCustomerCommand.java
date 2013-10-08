@@ -25,7 +25,12 @@ public class AddCustomerCommand extends TargetCommand {
       System.out.println(sad.getFirstName());
       System.out.println(sad.getLastName());
     servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail));
-    return super.execute(request); //To change body of generated methods, choose Tools | Templates.
+    String created = "Customer Created";
+    request.setAttribute("created", created);
+    Command command = servlets.Factory.getInstance().getCommand("listcustomer");
+                String path = command.execute(request);
+                return path;
+   // return super.execute(request); //To change body of generated methods, choose Tools | Templates.
   }
   
 
