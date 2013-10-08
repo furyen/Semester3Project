@@ -17,17 +17,10 @@
             ${customer.lastName}</td></tr>
           </c:forEach>    
     </table>
-    <a href='Controller?custid=1001&command=viewcustomer'>See 1001</a>
-    <form action='Controller'>
-      <label>Enter id for customer</label>
-      <input type='text' name='custid' id='custid'>
-      <input type='hidden' name='command' value='viewcustomer'>
-      <input type='submit' value='show details'>
+    <form action="Controller">
+        <input type="hidden" name="command" value="addcustomer">
+        <input type="submit" value="Create a new customer">
     </form>
-
-
-
-    <a href='Controller?command=viewcustomer'>SEE CUSTOMER</a>
     <a href='Controller?command=main'>Goto main page</a>
   </body>
 </html>

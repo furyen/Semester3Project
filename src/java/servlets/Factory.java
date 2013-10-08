@@ -4,7 +4,9 @@
  */
 package servlets;
 
+import commands.AddCustomerCommand;
 import commands.Command;
+import commands.ListCustomersCommand;
 import commands.LoginCommand;
 import commands.LogoutCommand;
 import commands.ShowCustomersCommand;
@@ -35,7 +37,8 @@ public class Factory {
         commands.put("employeeLogin", new LoginCommand("employee/Main.jsp", "Employee Login"));
         commands.put("logout_command", new LogoutCommand("/Login.jsp"));
         commands.put("view_customer", new ViewCustomerCommand("employee/viewCustomer.jsp"));
-
+        commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
+        commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
         customers.put("peter", "123");
         employees.put("joe", "321");
 

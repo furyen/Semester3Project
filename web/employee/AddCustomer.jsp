@@ -16,6 +16,7 @@
     <form action="Controller">
         
         <input type="text" name="command" value="addcustomer">
+        <input type="text" name="command" value="addcustomer">
         <input type="hidden" name="command" value="addcustomer">
         
     </form>
