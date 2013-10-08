@@ -53,7 +53,7 @@ public class Controller extends HttpServlet {
         request.setAttribute("style", "h1{color:blue;}");
         request.setAttribute("stylsheetfile", "my.css");
 
-        String path = "/Login.jsp";
+        String path = "/login.jsp";
         if ((username != null /* && notTimedOut(session)*/)
                 || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString)) {
 

@@ -15,9 +15,11 @@
     <h1>Add customer</h1>
     <form action="Controller">
         
-        <input type="text" name="command" value="addcustomer">
-        <input type="text" name="command" value="addcustomer">
+        <p>First Name:<input type='text' name='fisrtName' id='customername'></p>
+        <p>Last Name:<input type='text' name='lastName' id='customername'></p>
+        <p>e-mail:<input type='text' name='mail' id='customername'></p>
         <input type="hidden" name="command" value="addcustomer">
+        <input type="submit" value="Create customer">
         
     </form>
     <a href="Controller?command=main">Goto main page</a>

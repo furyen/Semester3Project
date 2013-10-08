@@ -17,12 +17,14 @@ public class AddCustomerCommand extends TargetCommand {
   @Override
   public String execute(HttpServletRequest request) {
     String firstname = request.getParameter("fisrtName");
+      System.out.println("xxxxxxxxxxx");
     String lastname = request.getParameter("lastName");
     String mail = request.getParameter("mail");
-    
-    
-   servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail));
-   
+    model.Customer sad = new model.Customer(firstname, lastname, mail);
+      System.out.println(sad.getEmail());
+      System.out.println(sad.getFirstName());
+      System.out.println(sad.getLastName());
+    servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail));
     return super.execute(request); //To change body of generated methods, choose Tools | Templates.
   }
   

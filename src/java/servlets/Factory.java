@@ -35,10 +35,11 @@ public class Factory {
                 new ShowCustomersCommand("employee/Show_customers.jsp"));
         commands.put("customerLogin", new LoginCommand("customer/Main.jsp", "Customer Login"));
         commands.put("employeeLogin", new LoginCommand("employee/Main.jsp", "Employee Login"));
-        commands.put("logout_command", new LogoutCommand("/Login.jsp"));
+        commands.put("logout_command", new LogoutCommand("/login.jsp"));
         commands.put("view_customer", new ViewCustomerCommand("employee/viewCustomer.jsp"));
         commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
+        commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
         customers.put("peter", "123");
         employees.put("joe", "321");
 

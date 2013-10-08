@@ -18,7 +18,7 @@
           </c:forEach>    
     </table>
     <form action="Controller">
-        <input type="hidden" name="command" value="addcustomer">
+        <input type="hidden" name="command" value="gotoaddcustomer">
         <input type="submit" value="Create a new customer">
     </form>
     <a href='Controller?command=main'>Goto main page</a>
