@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,6 +16,14 @@ public class Customer {
   private String password;
   private List<Account> accounts = new ArrayList();
   private static int nextid = 1000;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
   
   public long getCustomerId() {
     return customerId;
@@ -48,7 +57,7 @@ public class Customer {
     this.email = email;
   }
 
-  public List<Account> getAccounts() {
+  public Collection<Account> getAccounts() {
     return accounts;
   }
 

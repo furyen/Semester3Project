@@ -15,10 +15,10 @@ public class ViewCustomerCommand extends TargetCommand{
 
   @Override
   public String execute(HttpServletRequest request) {
-    String idAsStr = request.getParameter("custid");
-    long id = Long.parseLong(idAsStr);
-    Customer cust = servlets.Factory.getBankController().getCustomer(id);
+    String username = request.getParameter("username");
+    Customer cust = servlets.Factory.getBankController().getCustomer(username);
     request.setAttribute("customer", cust);
+    request.setAttribute("accounts", cust.getAccounts());
     return super.execute(request); 
   }
   

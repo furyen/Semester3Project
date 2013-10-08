@@ -12,11 +12,13 @@
     <table border='1'>     
       <c:forEach var="customer" items="${customers}">
         <tr><td>
-            <a href='Controller?custid=${customer.customerId}&command=viewcustomer'>
+            <a href='Controller?username=${customer.username}&command=viewcustomer'>
               ${customer.customerId}</a></td><td>${customer.firstName} 
             ${customer.lastName}</td></tr>
           </c:forEach>    
+        
     </table>
+    
     <form action="Controller">
         <input type="hidden" name="command" value="gotoaddcustomer">
         <input type="submit" value="Create a new customer">

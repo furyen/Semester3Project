@@ -10,7 +10,6 @@ import commands.ListCustomersCommand;
 import commands.LoginCommand;
 import commands.LogoutCommand;
 import commands.ShowCustomersCommand;
-import commands.ShowDateCommand;
 import commands.TargetCommand;
 import commands.ViewCustomerCommand;
 import java.util.HashMap;
@@ -25,8 +24,7 @@ public class Factory {
 
     private static Factory instance = new Factory();
     private Map<String, Command> commands = new HashMap<>();
-    private Map<String, String> customers = new HashMap<>();
-    private Map<String, String> employees = new HashMap<>();
+  
 
     private Factory() {
         commands.put("empmain",
@@ -42,17 +40,13 @@ public class Factory {
         commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
         commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
-        customers.put("peter", "123");
-        employees.put("joe", "321");
+     
 
 
     }
 
     public static Factory getInstance() {
         return instance;
-    }
-    public void createCustomerLogIn(String username, String password){
-        customers.put(username, password);
     }
 
     public static BankDataController getBankController() {
@@ -66,26 +60,5 @@ public class Factory {
         return commands.get(commandString);
     }
 
-    public boolean checkUserLogin(String username, String password, String userType) {
-        String pw = null;
-        
-        switch (userType) {
-            case "customerLogin":
-                {
-                    System.out.println("cust");
-                     pw = customers.get(username);
-                    break;
-                }
-            case "employeeLogin":
-                {
-                    System.out.println("emp");
-                     pw = employees.get(username);
-                    break;
-                }
-        }
-        if (pw != null && pw.equals(password)) {
-            return true;
-        }
-        return false;
-    }
+  
 }

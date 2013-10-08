@@ -5,6 +5,7 @@
 package commands;
 
 import javax.servlet.http.HttpServletRequest;
+import servlets.DummyBankController;
 import servlets.Factory;
 
 /**
@@ -23,7 +24,7 @@ public class LoginCommand extends TargetCommand {
         String password = request.getParameter("password");
         System.out.println("login: " + username);
         
-        if(Factory.getInstance().checkUserLogin(username, password,request.getParameter("command")))
+        if(DummyBankController.getInstance().checkUserLogin(username, password,request.getParameter("command")))
         {
            
             request.getSession().setAttribute("username", username);
