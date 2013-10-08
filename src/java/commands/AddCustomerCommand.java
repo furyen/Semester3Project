@@ -20,10 +20,6 @@ public class AddCustomerCommand extends TargetCommand {
       System.out.println("xxxxxxxxxxx");
     String lastname = request.getParameter("lastName");
     String mail = request.getParameter("mail");
-    model.Customer sad = new model.Customer(firstname, lastname, mail);
-      System.out.println(sad.getEmail());
-      System.out.println(sad.getFirstName());
-      System.out.println(sad.getLastName());
     servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail));
     String created = "Customer Created";
     request.setAttribute("created", created);

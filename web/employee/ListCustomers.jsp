@@ -21,6 +21,6 @@
         <input type="hidden" name="command" value="gotoaddcustomer">
         <input type="submit" value="Create a new customer">
     </form>
-    <a href='Controller?command=main'>Goto main page</a>
+    <a href='Controller?command=empmain'>Goto main page</a>
   </body>
 </html>
