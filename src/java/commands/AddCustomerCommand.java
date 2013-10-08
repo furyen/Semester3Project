@@ -17,10 +17,11 @@ public class AddCustomerCommand extends TargetCommand {
   @Override
   public String execute(HttpServletRequest request) {
     String firstname = request.getParameter("fisrtName");
-      System.out.println("xxxxxxxxxxx");
+    String username = request.getParameter("userName");
+    String password = request.getParameter("password");
     String lastname = request.getParameter("lastName");
     String mail = request.getParameter("mail");
-    servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail));
+    servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail, username,password));
     String created = "Customer Created";
     request.setAttribute("created", created);
     Command command = servlets.Factory.getInstance().getCommand("listcustomer");

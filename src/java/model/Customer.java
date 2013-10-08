@@ -11,6 +11,8 @@ public class Customer {
   private String firstName;
   private String lastName;
   private String email;
+  private String username;
+  private String password;
   private List<Account> accounts = new ArrayList();
   private static int nextid = 1000;
   
@@ -54,11 +56,13 @@ public class Customer {
     this.accounts = accounts;
   }
 
-  public Customer(String firstName, String lastName, String email) {
+  public Customer(String firstName, String lastName, String email,String username,String password) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     customerId = nextid++;
+    this.username=username;
+    this.password=password;
   }
   
   public void addAccount(Account account){

@@ -51,6 +51,9 @@ public class Factory {
     public static Factory getInstance() {
         return instance;
     }
+    public void createCustomerLogIn(String username, String password){
+        customers.put(username, password);
+    }
 
     public static BankDataController getBankController() {
         return DummyBankController.getInstance();

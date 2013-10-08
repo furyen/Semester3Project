@@ -22,7 +22,7 @@ public class DummyBankController implements BankDataController{
   
   private DummyBankController() {
     
-    Customer cust = new Customer("Donald","Duck","donald@duck.com");
+    Customer cust = new Customer("Donald","Duck","donald@duck.com","don","1");
     Account account1 = new Account("Basic Account",0);
     cust.addAccount(account1);
     account1.createTransaction(20000, "Salary");
@@ -34,7 +34,7 @@ public class DummyBankController implements BankDataController{
     accounts.put(account1.getAccountId(),account1);
     
     
-    cust = new Customer("Peter","Pan","peter@pan.com");
+    cust = new Customer("Peter","Pan","peter@pan.com","pet","1");
     account1 = new Account("Basic Account",0);
     cust.addAccount(account1);
     account1.createTransaction(20000, "Salary");
