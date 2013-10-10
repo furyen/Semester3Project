@@ -9,7 +9,7 @@ import commands.Command;
 import commands.ListCustomersCommand;
 import commands.LoginCommand;
 import commands.LogoutCommand;
-import commands.ShowCustomersCommand;
+import commands.ListAccountsCommand;
 import commands.TargetCommand;
 import commands.ViewCustomerCommand;
 import java.util.HashMap;
@@ -27,12 +27,8 @@ public class Factory {
   
 
     private Factory() {
-        commands.put("empmain",
-                new TargetCommand("employee/Main.jsp", "Main Page"));
-        commands.put("custmain",
-                new TargetCommand("customer/Main.jsp", "Main Page"));
-        commands.put("show_customers",
-                new ShowCustomersCommand("employee/Show_customers.jsp"));
+        commands.put("empmain", new TargetCommand("employee/Main.jsp", "Main Page"));
+        commands.put("custmain", new TargetCommand("customer/Main.jsp", "Main Page"));
         commands.put("customerLogin", new LoginCommand("customer/Main.jsp", "Customer Login"));
         commands.put("employeeLogin", new LoginCommand("employee/Main.jsp", "Employee Login"));
         commands.put("logout_command", new LogoutCommand("/login.jsp"));
@@ -40,6 +36,7 @@ public class Factory {
         commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
         commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
+        commands.put("listaccounts", new ListAccountsCommand("employee/ListAccounts.jsp"));
      
 
 

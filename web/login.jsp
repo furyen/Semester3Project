@@ -28,11 +28,5 @@
             <p>Username: <input type="text" name="username"/></p>
             <p>Password: <input type="password" name="password"></p>
             <p><input type="submit" value="Login"/></p>
-        </form>
-           <form action="Controller"> View Customer
-            <input type="text" name="customerId" id="custid"> 
-            <input type="hidden" name="command" value="view_customer">
-            <input type="submit">
-        </form>
     </body>
 </html>
