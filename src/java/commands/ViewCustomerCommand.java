@@ -17,9 +17,7 @@ public class ViewCustomerCommand extends TargetCommand{
   public String execute(HttpServletRequest request) {
     String username = request.getParameter("username");
     Customer cust = servlets.Factory.getBankController().getCustomer(username);
-
     request.setAttribute("customer", cust);
-    request.setAttribute("accounts", cust.getAccounts());
     return super.execute(request); 
   }
   

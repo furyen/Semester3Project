@@ -10,8 +10,10 @@ import commands.ListCustomersCommand;
 import commands.LoginCommand;
 import commands.LogoutCommand;
 import commands.ListAccountsCommand;
+import commands.NewTransactionCommand;
 import commands.TargetCommand;
 import commands.ViewCustomerCommand;
+import commands.ViewTransactionsCommand;
 import java.util.HashMap;
 import java.util.Map;
 import model.BankDataController;
@@ -37,7 +39,9 @@ public class Factory {
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
         commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
         commands.put("listaccounts", new ListAccountsCommand("employee/ListAccounts.jsp"));
-     
+        commands.put("viewtransactions", new ViewTransactionsCommand("employee/ViewTransactions.jsp", "Transactions"));
+        commands.put("gotomakenewtransaction", new ViewTransactionsCommand("employee/NewTransaction.jsp","Create a new Transaction"));
+        commands.put("makenewtransaction", new NewTransactionCommand("employee/ViewTransactions.jsp"));
 
 
     }

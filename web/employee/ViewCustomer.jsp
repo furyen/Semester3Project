@@ -20,7 +20,8 @@
         <table border='1'>   
             <c:forEach var="account" items="${customer.accounts}">
                 <tr>
-                    <td>${account.accountId}</td>
+                    <td><a href='Controller?accountid=${account.accountId}&command=viewtransactions'>
+              ${account.accountId}</a></td>
                     <td>${account.accountType}</td>
                     <td>${account.balance}</td>
                 </tr>
