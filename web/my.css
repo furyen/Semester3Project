@@ -1,15 +1,11 @@
-/* 
-    Document   : my
-    Created on : 02-10-2013, 13:22:58
-    Author     : hsty
-    Description:
-        Purpose of the stylesheet follows.
-*/
 
-root { 
-    display: block;
-    
-    
+h1{
+    color: #333399;
 }
-
-.myclass { color:chocolate; }
+img{
+    position: absolute; 
+border-image: round;
+    center: 50px;
+    right:50px;
+      
+}
