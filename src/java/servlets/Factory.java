@@ -27,16 +27,16 @@ public class Factory {
 
     private static Factory instance = new Factory();
     private Map<String, Command> commands = new HashMap<>();
-  
 
     private Factory() {
         //login command
-         commands.put("logout_command", new LogoutCommand("/login.jsp"));
+        commands.put("logout_command", new LogoutCommand("/login.jsp"));
         //employee side commands
         commands.put("empmain", new TargetCommand("employee/Main.jsp", "Main Page"));
         commands.put("listaccounts", new ListAccountsCommand("employee/ListAccounts.jsp"));
         commands.put("viewtransactions", new ViewTransactionsCommand("employee/ViewTransactions.jsp", "Transactions"));
-        commands.put("gotomakenewtransaction", new ViewTransactionsCommand("employee/NewTransaction.jsp","Create a new Transaction"));
+        commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
+        commands.put("gotomakenewtransaction", new ViewTransactionsCommand("employee/NewTransaction.jsp", "Create a new Transaction"));
         commands.put("makenewtransaction", new NewTransactionCommand("employee/ViewTransactions.jsp"));
         commands.put("gotoaddaccount", new ViewCustomerCommand("employee/CreateNewAccount.jsp"));
         commands.put("addaccount", new CreateNewAccountCommand("employee/ViewCustomer.jsp"));
@@ -45,10 +45,11 @@ public class Factory {
         commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
         //customer side commands
-        commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
         commands.put("custmain", new TargetCommand("customer/Main.jsp", "Main Page"));
         commands.put("customerLogin", new LoginCommand("customer/Main.jsp", "Customer Login"));
-
+        commands.put("viewowntransactions", new ViewTransactionsCommand("customer/ViewTransactions.jsp", "Transactions"));
+        commands.put("gotomakenewowntransaction", new ViewTransactionsCommand("customer/NewTransaction.jsp","Create new transaction"));
+        commands.put("makenewowntransaction", new NewTransactionCommand("customer/ViewTransactions.jsp"));
     }
 
     public static Factory getInstance() {
@@ -65,6 +66,4 @@ public class Factory {
         }
         return commands.get(commandString);
     }
-
-  
 }

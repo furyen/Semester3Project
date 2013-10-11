@@ -28,6 +28,7 @@ public class LoginCommand extends TargetCommand {
         {
            
             request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("customer", DummyBankController.getInstance().getCustomer(username));
             
             String lastCommand = (String) request.getSession()
                                                  .getAttribute("lastcommand");
