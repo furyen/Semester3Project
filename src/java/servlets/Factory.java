@@ -6,6 +6,7 @@ package servlets;
 
 import commands.AddCustomerCommand;
 import commands.Command;
+import commands.CreateNewAccountCommand;
 import commands.ListCustomersCommand;
 import commands.LoginCommand;
 import commands.LogoutCommand;
@@ -29,20 +30,24 @@ public class Factory {
   
 
     private Factory() {
+        //login command
+         commands.put("logout_command", new LogoutCommand("/login.jsp"));
+        //employee side commands
         commands.put("empmain", new TargetCommand("employee/Main.jsp", "Main Page"));
-        commands.put("custmain", new TargetCommand("customer/Main.jsp", "Main Page"));
-        commands.put("customerLogin", new LoginCommand("customer/Main.jsp", "Customer Login"));
-        commands.put("employeeLogin", new LoginCommand("employee/Main.jsp", "Employee Login"));
-        commands.put("logout_command", new LogoutCommand("/login.jsp"));
-        commands.put("viewcustomer", new ViewCustomerCommand("employee/ViewCustomer.jsp"));
-        commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
-        commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
-        commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
         commands.put("listaccounts", new ListAccountsCommand("employee/ListAccounts.jsp"));
         commands.put("viewtransactions", new ViewTransactionsCommand("employee/ViewTransactions.jsp", "Transactions"));
         commands.put("gotomakenewtransaction", new ViewTransactionsCommand("employee/NewTransaction.jsp","Create a new Transaction"));
         commands.put("makenewtransaction", new NewTransactionCommand("employee/ViewTransactions.jsp"));
-
+        commands.put("gotoaddaccount", new ViewCustomerCommand("employee/CreateNewAccount.jsp"));
+        commands.put("addaccount", new CreateNewAccountCommand("employee/ViewCustomer.jsp"));
+        commands.put("employeeLogin", new LoginCommand("employee/Main.jsp", "Employee Login"));
+        commands.put("viewcustomer", new ViewCustomerCommand("employee/ViewCustomer.jsp"));
+        commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp"));
+        commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp"));
+        //customer side commands
+        commands.put("gotoaddcustomer", new TargetCommand("employee/AddCustomer.jsp"));
+        commands.put("custmain", new TargetCommand("customer/Main.jsp", "Main Page"));
+        commands.put("customerLogin", new LoginCommand("customer/Main.jsp", "Customer Login"));
 
     }
 

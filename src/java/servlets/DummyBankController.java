@@ -60,7 +60,9 @@ public class DummyBankController implements BankDataController {
     public Customer getCustomer(String username) {
         return customers.get(username);
     }
-
+    public void addAccount(Account acc){
+        accounts.put(acc.getAccountId(), acc);
+    }
     @Override
     public Account getAccount(long id) {
         return accounts.get(id);
