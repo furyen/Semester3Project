@@ -17,7 +17,9 @@ import commands.ViewCustomerCommand;
 import commands.ViewTransactionsCommand;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import model.BankDataController;
+import util.UAgentInfo;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Factory {
 
     private Factory() {
         //login command
+        commands.put("login", new TargetCommand("/login.jsp"));
         commands.put("logout_command", new LogoutCommand("/login.jsp"));
         //employee side commands
         commands.put("empmain", new TargetCommand("employee/Main.jsp", "Main Page"));
@@ -50,6 +53,10 @@ public class Factory {
         commands.put("viewowntransactions", new ViewTransactionsCommand("customer/ViewTransactions.jsp", "Transactions"));
         commands.put("gotomakenewowntransaction", new ViewTransactionsCommand("customer/NewTransaction.jsp","Create new transaction"));
         commands.put("makenewowntransaction", new NewTransactionCommand("customer/ViewTransactions.jsp"));
+        //mobile commands
+        commands.put("mainmobile", new TargetCommand("mobile/mobileMainNA.jsp"));
+        commands.put("loginmobile", new TargetCommand("mobile/loginMobile.jsp"));
+    
     }
 
     public static Factory getInstance() {
@@ -58,8 +65,22 @@ public class Factory {
 
     public Command getCommand(String commandString) {
         if (commandString == null) {
-            commandString = "main";
+            commandString = "login";
         }
         return commands.get(commandString);
+    }
+    public Command getCommand1(String cmdStr, HttpServletRequest res) {
+        if(cmdStr == null){
+            cmdStr = isMobileDevice(res)? "mainmobile": "main";
+        }else{
+            cmdStr = "main";
+        }
+        return commands.get(cmdStr);
+    }
+    public boolean isMobileDevice(HttpServletRequest res){
+        String userAgent = res.getHeader("User-Agent");
+        String httpAccept = res.getHeader("Accept");
+        UAgentInfo detector = new UAgentInfo(userAgent,httpAccept);
+        return detector.detectMobileQuick();
     }
 }

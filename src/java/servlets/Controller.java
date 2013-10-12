@@ -52,12 +52,16 @@ public class Controller extends HttpServlet {
         
         request.setAttribute("style", "h1{color:blue;}");
         request.setAttribute("stylsheetfile", "my.css");
-
-        String path = "/login.jsp";
+ String path;
+        if(Factory.getInstance().isMobileDevice(request)){
+     path= "mobile/mobileMainNA.jsp";
+ }else{
+         path = "/login.jsp";
+        }
         if ((username != null /* && notTimedOut(session)*/)
-                || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString)) {
+                || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString) || "loginmobile".equals(commandString)) {
 
-            Command command = Factory.getInstance().getCommand(commandString);
+            Command command = Factory.getInstance().getCommand1(commandString, request);
             path = command.execute(request);
             
         }
