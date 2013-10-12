@@ -22,16 +22,23 @@ public class CreateNewAccountCommand extends TargetCommand{
     public String execute(HttpServletRequest request) {
         String accountType = request.getParameter("accounttype");
         String username = request.getParameter("username");
-        double balance = Double.parseDouble(request.getParameter("balance"));
-        Customer cust = servlets.DummyBankController.getInstance().getCustomer(username);
-        Account acc = new Account(accountType, balance);
+        String balance = request.getParameter("balance");
+        if(!accountType.isEmpty() && !username.isEmpty() && !balance.isEmpty()){
+        double balanceTrue = Double.parseDouble(balance);
+            Customer cust = servlets.DummyBankController.getInstance().getCustomer(username);
+        Account acc = new Account(accountType, balanceTrue);
         cust.addAccount(acc);
         servlets.DummyBankController.getInstance().addAccount(acc);
         request.setAttribute("customer", cust);
-        
-        
-        
-        return super.execute(request); //To change body of generated methods, choose Tools | Templates.
+        return super.execute(request);
+        }else{
+            String error = "Culd not create account. Please insert data in all fields.";
+            request.setAttribute("errorincreating", error);
+            request.setAttribute("username", username);
+            Command command = servlets.Factory.getInstance().getCommand("gotoaddaccount");
+                String path = command.execute(request);
+                return path;
+        }
     }
     
     

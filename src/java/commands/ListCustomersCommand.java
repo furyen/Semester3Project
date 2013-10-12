@@ -20,7 +20,7 @@ public class ListCustomersCommand extends TargetCommand {
 
   @Override
   public String execute(HttpServletRequest request) {
-    Collection<Customer> custs = servlets.Factory.getBankController().getCustomers();
+    Collection<Customer> custs = servlets.DummyBankController.getInstance().getCustomers();
     request.setAttribute("customers", custs);
     return super.execute(request); 
   }

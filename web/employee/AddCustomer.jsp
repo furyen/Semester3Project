@@ -13,6 +13,7 @@
   </head>
   <body>
     <h1>Add customer</h1>
+    <div style="color: red;">${errorincreating}</div>
     <form action="Controller">
         
         <p>First Name:<input type='text' name='fisrtName' id='firstname'></p>

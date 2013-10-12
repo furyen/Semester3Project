@@ -8,4 +8,5 @@ public interface BankDataController {
    Account getAccount(long id);
    Collection<Account> getAccounts();
    Collection<Customer> getCustomers();
+   void addAccount(Account acc);
 }

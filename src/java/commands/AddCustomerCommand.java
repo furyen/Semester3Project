@@ -21,12 +21,20 @@ public class AddCustomerCommand extends TargetCommand {
     String password = request.getParameter("password");
     String lastname = request.getParameter("lastName");
     String mail = request.getParameter("mail");
-    servlets.Factory.getBankController().addCustomer(new model.Customer(firstname, lastname, mail, username,password));
+    if(!firstname.isEmpty() && !username.isEmpty() && !password.isEmpty() && !lastname.isEmpty() && !mail.isEmpty()){
+    servlets.DummyBankController.getInstance().addCustomer(new model.Customer(firstname, lastname, mail, username,password));
     String created = "Customer Created";
     request.setAttribute("created", created);
     Command command = servlets.Factory.getInstance().getCommand("listcustomer");
                 String path = command.execute(request);
                 return path;
+    }else{
+        String error = "Culd not create customer please insert data in all fields.";
+        request.setAttribute("errorincreating", error);
+        Command command = servlets.Factory.getInstance().getCommand("gotoaddcustomer");
+                String path = command.execute(request);
+                return path;
+    }
    // return super.execute(request); //To change body of generated methods, choose Tools | Templates.
   }
   

@@ -22,12 +22,22 @@ public class NewTransactionCommand extends TargetCommand{
         String idAccount = request.getParameter("accountid");
         String amount = request.getParameter("amount");
         String info = request.getParameter("info");
-    long accountId = Long.parseLong(idAccount);
+        long accountId = Long.parseLong(idAccount);
+        Account account = servlets.DummyBankController.getInstance().getAccount(accountId);
+   if(!amount.isEmpty() && !info.isEmpty()){   
     double amountReady = Double.parseDouble(amount);
-   Account account = servlets.DummyBankController.getInstance().getAccount(accountId);
    account.createTransaction(amountReady, info);
     request.setAttribute("account", account);
         return super.execute(request); //To change body of generated methods, choose Tools | Templates.
-    }
+   }else{
+       String error = "Culd not create transaction. Please insert data in all fields.";
+            request.setAttribute("errorincreating", error);
+            request.setAttribute("account", account);
+            Command command = servlets.Factory.getInstance().getCommand("gotomakenewtransaction");
+                String path = command.execute(request);
+                return path;
+   }
+   } 
+   }
  
-}
+

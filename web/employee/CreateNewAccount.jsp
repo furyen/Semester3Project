@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Create a new account for ${customer.firstName} ${customer.lastName}</h1>
-        
+        <div style="color: red;">${errorincreating}</div>
         <form action="Controller">
-            <input type="radio" name="accounttype" value="Checking Account">Checking Account<br>
+            <input type="radio" name="accounttype" value="Checking Account" checked="checked">Checking Account<br>
             <input type="radio" name="accounttype" value="Money Market Account">Money Market Account<br>
             <input type="radio" name="accounttype" value="Time Deposit">Time Deposit<br>
             Balance:<input type="text" name="balance"><br>

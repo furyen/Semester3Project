@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Create a new Transaction for</h1>
-       <form action="Controller">
-        
+      <div style="color: red;">${errorincreating}</div>
+        <form action="Controller">  
         <p>Amount:<input type='text' name='amount' id='amount'></p>
         <p>Info:<input type='text' name='info' id='info'></p>
         <input type="hidden" name="command" value="makenewowntransaction">

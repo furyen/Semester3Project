@@ -56,10 +56,6 @@ public class Factory {
         return instance;
     }
 
-    public static BankDataController getBankController() {
-        return DummyBankController.getInstance();
-    }
-
     public Command getCommand(String commandString) {
         if (commandString == null) {
             commandString = "main";
