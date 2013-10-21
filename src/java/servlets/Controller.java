@@ -61,7 +61,7 @@ public class Controller extends HttpServlet {
         if ((username != null /* && notTimedOut(session)*/)
                 || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString) || "loginmobile".equals(commandString)) {
 
-            Command command = Factory.getInstance().getCommand1(commandString, request);
+            Command command = Factory.getInstance().getCommand(commandString);
             path = command.execute(request);
             
         }
