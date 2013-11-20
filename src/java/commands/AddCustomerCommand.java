@@ -3,6 +3,7 @@
 
 package commands;
 
+import dtos.CustomerDTO;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,8 +22,9 @@ public class AddCustomerCommand extends TargetCommand {
     String password = request.getParameter("password");
     String lastname = request.getParameter("lastName");
     String mail = request.getParameter("mail");
+    Integer phone = Integer.parseInt(request.getParameter("phone"));
     if(!firstname.isEmpty() && !username.isEmpty() && !password.isEmpty() && !lastname.isEmpty() && !mail.isEmpty()){
-    servlets.DummyBankController.getInstance().addCustomer(new model.Customer(firstname, lastname, mail, username,password));
+    servlets.DummyBankController.getInstance().addCustomer(new CustomerDTO(firstname, lastname, mail, username,password));
     String created = "Customer Created";
     request.setAttribute("created", created);
     Command command = servlets.Factory.getInstance().getCommand("listcustomer");
