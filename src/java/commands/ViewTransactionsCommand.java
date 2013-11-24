@@ -4,10 +4,10 @@
  */
 package commands;
 
-import java.util.Date;
+import dto.AccountTransactionsDTO;
+import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
-import model.Account;
-import model.Customer;
+import servlets.Factory;
 
 /**
  *
@@ -22,12 +22,9 @@ public class ViewTransactionsCommand extends TargetCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String idAccount = request.getParameter("accountid");
-    long accountId = Long.parseLong(idAccount);
-   Account account = servlets.DummyBankController.getInstance().getAccount(accountId);
-    request.setAttribute("account", account);
-        return super.execute(request); 
+        int accountId = Integer.parseInt(idAccount);
+        Collection<AccountTransactionsDTO> transactions = Factory.getInstance().getBankController().getAccountTransactions(accountId);
+        request.setAttribute("account", transactions);
+        return super.execute(request);
     }
-    
-    
-    
 }

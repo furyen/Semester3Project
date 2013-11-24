@@ -4,21 +4,17 @@
  */
 package commands;
 
+import dto.AccountDTO;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
-import model.Account;
-import model.Customer;
 import servlets.Factory;
 
-/**
- *
- * @author hsty
- */
+
 public class ListAccountsCommand extends TargetCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        Collection<Account> accounts = servlets.DummyBankController.getInstance().getAccounts();
+        Collection<AccountDTO> accounts = Factory.getInstance().getBankController().getAccounts();
     request.setAttribute("accounts", accounts);
     return super.execute(request); 
     }

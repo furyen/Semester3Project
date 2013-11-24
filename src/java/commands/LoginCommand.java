@@ -5,7 +5,6 @@
 package commands;
 
 import javax.servlet.http.HttpServletRequest;
-import servlets.DummyBankController;
 import servlets.Factory;
 
 /**
@@ -22,28 +21,36 @@ public class LoginCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String loginType = request.getParameter("command");
         System.out.println("login: " + username);
-        
-        if(DummyBankController.getInstance().checkUserLogin(username, password,request.getParameter("command")))
-        {
-           
+        Boolean success;
+
+        switch (loginType) {
+            case "emplogin":
+                success = Factory.getInstance().getBankController().empLogin(username, password);
+                break;
+            case "custlogin":
+                success = Factory.getInstance().getBankController().custLogin(username, password);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        if (success) {
+
             request.getSession().setAttribute("username", username);
-            request.getSession().setAttribute("customer", DummyBankController.getInstance().getCustomer(username));
-            
+            request.getSession().setAttribute("customer", Factory.getInstance().getBankController().getCustomer(username));
             String lastCommand = (String) request.getSession()
-                                                 .getAttribute("lastcommand");
-            if(lastCommand != null)
-            {
+                    .getAttribute("lastcommand");
+            if (lastCommand != null) {
                 Command command = Factory.getInstance().getCommand(lastCommand);
                 String path = command.execute(request);
                 return path;
             }
             return super.execute(request);
-            
+
+        } else {
+            request.setAttribute("error", "Error: wrong username or password");
+            return "/login.jsp";
         }
-        request.setAttribute("error", "Error: wrong username or password");
-        return "/login.jsp";
     }
-    
-    
 }

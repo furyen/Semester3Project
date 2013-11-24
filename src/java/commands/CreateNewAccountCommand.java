@@ -4,9 +4,13 @@
  */
 package commands;
 
+import dto.AccountDTO;
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
-import model.Account;
-import model.Customer;
+import servlets.Factory;
 
 /**
  *
@@ -22,14 +26,15 @@ public class CreateNewAccountCommand extends TargetCommand{
     public String execute(HttpServletRequest request) {
         String accountType = request.getParameter("accounttype");
         String username = request.getParameter("username");
-        String balance = request.getParameter("balance");
-        if(!accountType.isEmpty() && !username.isEmpty() && !balance.isEmpty()){
-        double balanceTrue = Double.parseDouble(balance);
-            Customer cust = servlets.DummyBankController.getInstance().getCustomer(username);
-        Account acc = new Account(accountType, balanceTrue);
-        cust.addAccount(acc);
-        servlets.DummyBankController.getInstance().addAccount(acc);
-        request.setAttribute("customer", cust);
+        BigDecimal balance = new BigDecimal(request.getParameter("balance"));
+        String interest = request.getParameter("interest");
+        String interestDate = request.getParameter("interestdate");
+        Integer minimumBalance = Integer.parseInt(request.getParameter("minimumbalance"));
+        if(!accountType.isEmpty() && !username.isEmpty()){
+        AccountDTO acc = new AccountDTO(accountType, balance, 2, new Date(), Integer.parseInt(interest), new Date(interestDate), minimumBalance, username);
+        Factory.getInstance().getBankController().addAccount(acc);
+  
+//        request.setAttribute("customer", cust);
         return super.execute(request);
         }else{
             String error = "Culd not create account. Please insert data in all fields.";

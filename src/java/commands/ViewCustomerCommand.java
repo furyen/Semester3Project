@@ -1,8 +1,9 @@
 
 package commands;
 
+import dto.CustomerDTO;
 import javax.servlet.http.HttpServletRequest;
-import model.Customer;
+import servlets.Factory;
 
 /**
  * @author Lars Mortensen
@@ -16,7 +17,7 @@ public class ViewCustomerCommand extends TargetCommand{
   @Override
   public String execute(HttpServletRequest request) {
     String username = request.getParameter("username");
-    Customer cust = servlets.DummyBankController.getInstance().getCustomer(username);
+    CustomerDTO cust =Factory.getInstance().getBankController().getCustomer(username);
     request.setAttribute("customer", cust);
     return super.execute(request); 
   }

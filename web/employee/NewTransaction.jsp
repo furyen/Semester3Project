@@ -17,6 +17,7 @@
         <form action="Controller">
         <p>Amount:<input type='text' name='amount' id='amount'></p>
         <p>Info:<input type='text' name='info' id='info'></p>
+        <p>Recipient:<input type='text' name='recipient' id='recipient'></p>
         <input type="hidden" name="command" value="makenewtransaction">
         <input type="hidden" name="accountid" value="${account.accountId}">
         <input type="submit" value="Create Transaction">

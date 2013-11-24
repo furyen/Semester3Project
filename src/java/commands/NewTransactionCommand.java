@@ -4,8 +4,9 @@
  */
 package commands;
 
+import dto.TransactionsDTO;
 import javax.servlet.http.HttpServletRequest;
-import model.Account;
+import servlets.Factory;
 
 /**
  *
@@ -19,20 +20,17 @@ public class NewTransactionCommand extends TargetCommand{
 
     @Override
     public String execute(HttpServletRequest request) {
-        String idAccount = request.getParameter("accountid");
-        String amount = request.getParameter("amount");
+        int accountId = Integer.parseInt(request.getParameter("accountid"));
+        Double amount = Double.parseDouble(request.getParameter("amount"));
         String info = request.getParameter("info");
-        long accountId = Long.parseLong(idAccount);
-        Account account = servlets.DummyBankController.getInstance().getAccount(accountId);
-   if(!amount.isEmpty() && !info.isEmpty()){   
-    double amountReady = Double.parseDouble(amount);
-   account.createTransaction(amountReady, info);
-    request.setAttribute("account", account);
-        return super.execute(request); //To change body of generated methods, choose Tools | Templates.
+        int recipient = Integer.parseInt(request.getParameter("recipient"));
+       
+   if(amount>0&& !info.isEmpty()){   
+    Factory.getInstance().getBankController().createTransaction(accountId, recipient, amount);
+        return super.execute(request);
    }else{
        String error = "Culd not create transaction. Please insert data in all fields.";
             request.setAttribute("errorincreating", error);
-            request.setAttribute("account", account);
             Command command = servlets.Factory.getInstance().getCommand("gotomakenewtransaction");
                 String path = command.execute(request);
                 return path;
