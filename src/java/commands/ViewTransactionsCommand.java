@@ -23,7 +23,7 @@ public class ViewTransactionsCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         String idAccount = request.getParameter("accountid");
         int accountId = Integer.parseInt(idAccount);
-        Collection<AccountTransactionsDTO> transactions = Factory.getInstance().getBankController().getAccountTransactions(accountId);
+        Collection<AccountTransactionsDTO> transactions = Factory.getInstance().getBankManager().getAccountTransactions(accountId);
         request.setAttribute("account", transactions);
         return super.execute(request);
     }

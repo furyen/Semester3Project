@@ -32,8 +32,8 @@ import util.UAgentInfo;
  */
 public class Factory {
 
-    BankManagerRemote bankManager = lookupBankManagerRemote();
     private static Factory instance = new Factory();
+    BankManagerRemote bankManager = lookupBankManagerRemote();
     private Map<String, Command> commands = new HashMap<>();
 
     private Factory() {
@@ -85,10 +85,6 @@ public class Factory {
         return commands.get(cmdStr);
     }
 
-    public BankManagerRemote getBankController() {
-        return bankManager;
-    }
-
     public boolean isMobileDevice(HttpServletRequest res) {
         String userAgent = res.getHeader("User-Agent");
         String httpAccept = res.getHeader("Accept");
@@ -96,10 +92,14 @@ public class Factory {
         return detector.detectMobileQuick();
     }
 
+    public BankManagerRemote getBankManager() {
+        return bankManager;
+    }
+
     private BankManagerRemote lookupBankManagerRemote() {
         try {
             Context c = new InitialContext();
-            return (BankManagerRemote) c.lookup("java:global/ProjectBackend/BankManager!contract.BankManagerRemote");
+            return (BankManagerRemote) c.lookup("java:global/ProjectBackend/BankManager!control.BankManagerRemote");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

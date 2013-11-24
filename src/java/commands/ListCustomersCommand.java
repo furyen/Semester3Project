@@ -14,7 +14,7 @@ public class ListCustomersCommand extends TargetCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        Collection<CustomerDTO> custs = Factory.getInstance().getBankController().getCustomers();
+        Collection<CustomerDTO> custs = Factory.getInstance().getBankManager().getCustomers();
         request.setAttribute("customers", custs);
         return super.execute(request);
     }

@@ -27,10 +27,10 @@ public class LoginCommand extends TargetCommand {
 
         switch (loginType) {
             case "emplogin":
-                success = Factory.getInstance().getBankController().empLogin(username, password);
+                success = Factory.getInstance().getBankManager().empLogin(username, password);
                 break;
             case "custlogin":
-                success = Factory.getInstance().getBankController().custLogin(username, password);
+                success = Factory.getInstance().getBankManager().custLogin(username, password);
                 break;
             default:
                 throw new AssertionError();
@@ -38,7 +38,7 @@ public class LoginCommand extends TargetCommand {
         if (success) {
 
             request.getSession().setAttribute("username", username);
-            request.getSession().setAttribute("customer", Factory.getInstance().getBankController().getCustomer(username));
+            request.getSession().setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
             String lastCommand = (String) request.getSession()
                     .getAttribute("lastcommand");
             if (lastCommand != null) {

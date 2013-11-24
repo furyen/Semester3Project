@@ -41,7 +41,7 @@
        <h1>Log in</h1>
         <div style="color: red;">${error}</div>
         <form action="Controller" method="post">
-            <input type="hidden" name="command" value="customerLogin"/>
+            <input type="hidden" name="command" value="custlogin"/>
             <label>
             Username:
             <br/>
@@ -62,7 +62,7 @@
        <h1>Log in as Bank Teller</h1>
         <div style="color: red;">${error}</div>
         <form action="Controller" method="post">
-            <input type="hidden" name="command" value="employeeLogin"/>
+            <input type="hidden" name="command" value="emplogin"/>
             <label>
             Username:
             <br/>

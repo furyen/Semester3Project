@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class Controller extends HttpServlet {
 
     static final long TIME_OUT = 5000;
-
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
         String commandString = request.getParameter("command");
 
 
-        if (!"employeeLogin".equals(commandString)&&!"customerLogin".equals(commandString)) {
+        if (!"emplogin".equals(commandString)&&!"custlogin".equals(commandString)) {
             session.setAttribute("lastcommand", commandString);
         }
         
@@ -56,10 +56,10 @@ public class Controller extends HttpServlet {
         if(Factory.getInstance().isMobileDevice(request)){
      path= "mobile/mobileMainNA.jsp";
  }else{
-         path = "/login.jsp";
+         path = "login.jsp";
         }
         if ((username != null /* && notTimedOut(session)*/)
-                || "employeeLogin".equals(commandString) || "customerLogin".equals(commandString) || "loginmobile".equals(commandString)) {
+                || "emplogin".equals(commandString) || "custlogin".equals(commandString) || "loginmobile".equals(commandString)) {
 
             Command command = Factory.getInstance().getCommand(commandString);
             path = command.execute(request);

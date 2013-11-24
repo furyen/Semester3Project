@@ -26,7 +26,7 @@ public class NewTransactionCommand extends TargetCommand{
         int recipient = Integer.parseInt(request.getParameter("recipient"));
        
    if(amount>0&& !info.isEmpty()){   
-    Factory.getInstance().getBankController().createTransaction(accountId, recipient, amount);
+    Factory.getInstance().getBankManager().createTransaction(accountId, recipient, amount);
         return super.execute(request);
    }else{
        String error = "Culd not create transaction. Please insert data in all fields.";

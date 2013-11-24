@@ -14,7 +14,7 @@ public class ListAccountsCommand extends TargetCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        Collection<AccountDTO> accounts = Factory.getInstance().getBankController().getAccounts();
+        Collection<AccountDTO> accounts = Factory.getInstance().getBankManager().getAccounts();
     request.setAttribute("accounts", accounts);
     return super.execute(request); 
     }

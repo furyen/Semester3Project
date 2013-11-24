@@ -17,7 +17,7 @@ public class ViewCustomerCommand extends TargetCommand{
   @Override
   public String execute(HttpServletRequest request) {
     String username = request.getParameter("username");
-    CustomerDTO cust =Factory.getInstance().getBankController().getCustomer(username);
+    CustomerDTO cust =Factory.getInstance().getBankManager().getCustomer(username);
     request.setAttribute("customer", cust);
     return super.execute(request); 
   }

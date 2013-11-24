@@ -26,7 +26,7 @@ public class AddCustomerCommand extends TargetCommand {
         Integer phone = Integer.parseInt(request.getParameter("phone"));
         String address = request.getParameter("address");
         if (!firstname.isEmpty() && !username.isEmpty() && !password.isEmpty() && !lastname.isEmpty() && !mail.isEmpty()) {
-            Factory.getInstance().getBankController().addCustomer(new CustomerDTO(firstname,lastname, address, username, password, phone, mail));
+            Factory.getInstance().getBankManager().addCustomer(new CustomerDTO(firstname,lastname, address, username, password, phone, mail));
             String created = "Customer Created";
             request.setAttribute("created", created);
             Command command = servlets.Factory.getInstance().getCommand("listcustomer");
