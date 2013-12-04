@@ -13,7 +13,7 @@
       <c:forEach var="customer" items="${customers}">
         <tr><td>
             <a href='Controller?username=${customer.username}&command=viewcustomer'>
-              ${customer.customerId}</a></td><td>${customer.firstName} 
+              ${customer.username}</a></td><td>${customer.firstName} 
             ${customer.lastName}</td></tr>
           </c:forEach>    
         

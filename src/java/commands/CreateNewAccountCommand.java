@@ -5,10 +5,12 @@
 package commands;
 
 import dto.AccountDTO;
+import dto.CustomerAccountsDTO;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,16 +37,19 @@ public class CreateNewAccountCommand extends TargetCommand {
         Integer minimumBalance = Integer.parseInt(request.getParameter("minimumbalance"));
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Date interestDate = null;
-        try {      
-            interestDate = df.parse(interestDateString);
-        } catch (ParseException ex) {
-            Logger.getLogger(CreateNewAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
+        if (interestDateString != null) {
+            try {
+                interestDate = df.parse(interestDateString);
+            } catch (ParseException ex) {
+                Logger.getLogger(CreateNewAccountCommand.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (!accountType.isEmpty() && !username.isEmpty()) {
-            AccountDTO acc = new AccountDTO(accountType, balance, 2, new Date(), Integer.parseInt(interest),interestDate, minimumBalance, username);
+            AccountDTO acc = new AccountDTO(accountType, balance, 3, new Date(), Integer.parseInt(interest), interestDate, minimumBalance, username);
             Factory.getInstance().getBankManager().addAccount(acc);
-
-//        request.setAttribute("customer", cust);
+            request.setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
+            Collection<CustomerAccountsDTO> accounts = Factory.getInstance().getBankManager().getCustomerAccounts(username);
+            request.setAttribute("accounts", accounts);
             return super.execute(request);
         } else {
             String error = "Culd not create account. Please insert data in all fields.";

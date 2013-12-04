@@ -19,6 +19,8 @@
             <input type="radio" name="accounttype" value="Money Market Account">Money Market Account<br>
             <input type="radio" name="accounttype" value="Time Deposit">Time Deposit<br>
             Balance:<input type="text" name="balance"><br>
+            Minimum Balance<input type="text" name="minimumbalance"><br>
+            Interest<input type="text" name="interest"><br>
             <input type="hidden" name="username" value="${customer.username}">
             <input type="hidden" name="command" value="addaccount">
             <input type="submit" value="Create New Account"> 

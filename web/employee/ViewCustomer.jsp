@@ -16,12 +16,12 @@
         <h1>Customer Details!</h1>
         <p>${customer.firstName}<br>${customer.lastName}<br>${customer.email}</p>
         <table border='1'>   
-            <c:forEach var="account" items="${customer.accounts}">
+            <c:forEach var="account" items="${accounts}">
                 <tr>
                     <td><a href='Controller?accountid=${account.accountId}&command=viewtransactions'>
-                            ${account.accountId}</a></td>
-                    <td>${account.accountType}</td>
-                    <td>${account.balance}</td>
+                        ${account.accountId}</a></td>
+                    <td>${account.username}</td>
+
                 </tr>
             </c:forEach>    
         </table>
@@ -30,7 +30,7 @@
             <input type="hidden" name="username" value="${customer.username}">
             <input type="submit" value="Create New Account">
         </form>
-        
+
         <div>
             <form action="Controller">
                 <input type="hidden" name="command" value="listcustomer">

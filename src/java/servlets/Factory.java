@@ -31,9 +31,10 @@ import util.UAgentInfo;
  * @author hsty
  */
 public class Factory {
-
-    private static Factory instance = new Factory();
     BankManagerRemote bankManager = lookupBankManagerRemote();
+
+
+    private static Factory instance = null;    
     private Map<String, Command> commands = new HashMap<>();
 
     private Factory() {
@@ -66,6 +67,9 @@ public class Factory {
     }
 
     public static Factory getInstance() {
+         if(instance == null) {
+               instance = new Factory();
+         }
         return instance;
     }
 
@@ -105,4 +109,6 @@ public class Factory {
             throw new RuntimeException(ne);
         }
     }
+
+   
 }
