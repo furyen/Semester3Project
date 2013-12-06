@@ -45,7 +45,7 @@ public class CreateNewAccountCommand extends TargetCommand {
             }
         }
         if (!accountType.isEmpty() && !username.isEmpty()) {
-            AccountDTO acc = new AccountDTO(accountType, balance, 3, new Date(), Integer.parseInt(interest), interestDate, minimumBalance, username);
+            AccountDTO acc = new AccountDTO(accountType, balance, new Date(), Integer.parseInt(interest), interestDate, minimumBalance, username);
             Factory.getInstance().getBankManager().addAccount(acc);
             request.setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
             Collection<CustomerAccountsDTO> accounts = Factory.getInstance().getBankManager().getCustomerAccounts(username);

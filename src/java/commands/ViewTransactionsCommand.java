@@ -4,7 +4,8 @@
  */
 package commands;
 
-import dto.AccountTransactionsDTO;
+import dto.AccountDTO;
+import dto.TransactionsDTO;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import servlets.Factory;
@@ -23,8 +24,10 @@ public class ViewTransactionsCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         String idAccount = request.getParameter("accountid");
         int accountId = Integer.parseInt(idAccount);
-        Collection<AccountTransactionsDTO> transactions = Factory.getInstance().getBankManager().getAccountTransactions(accountId);
-        request.setAttribute("account", transactions);
+        AccountDTO account= Factory.getInstance().getBankManager().getAccount(accountId);
+        Collection<TransactionsDTO> transactions = Factory.getInstance().getBankManager().getAccountTransactions(accountId);
+        request.setAttribute("account", account);
+        request.setAttribute("transactions", transactions);
         return super.execute(request);
     }
 }

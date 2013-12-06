@@ -16,23 +16,23 @@
         <h1>Transactions for account ${account.accountId} </h1>
         <p>Type: ${account.accountType} Ballance: ${account.balance}</p>
        <table border='1' cellpadding="2">
-        <c:forEach var="transaction" items="${account.transactions}"> 
+        <c:forEach var="transaction" items="${transactions}"> 
                    <tr>
                     <td>${transaction.transactionId}</td>
-                    <td>${transaction.timestamp}</td>
                     <td>${transaction.amount}</td>
-                    <td>${transaction.balance}</td>
-                    <td>${transaction.info}</td>
+                    <td>${transaction.date}</td>
+                    <td>${transaction.recipient}</td>
                 </tr>
             </c:forEach>
        </table>
        <form action="Controller">
         <input type="hidden" name="command" value="viewcustomer">
-        <input type="hidden" name="username" value="${account.owner.username}">
+        <input type="hidden" name="username" value="${account.username}">
         <input type="submit" value="Back to customer">
     </form>
        <form action="Controller">
         <input type="hidden" name="command" value="gotomakenewtransaction">
+        <input type="hidden" name="username" value="${account.username}">
         <input type="hidden" name="accountid" value="${account.accountId}">
         <input type="submit" value="Create a Transaction">
     </form>

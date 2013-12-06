@@ -20,6 +20,7 @@
         <p>Recipient:<input type='text' name='recipient' id='recipient'></p>
         <input type="hidden" name="command" value="makenewtransaction">
         <input type="hidden" name="accountid" value="${account.accountId}">
+              <input type="hidden" name="username" value="${account.username}">
         <input type="submit" value="Create Transaction">
         
     </form>
