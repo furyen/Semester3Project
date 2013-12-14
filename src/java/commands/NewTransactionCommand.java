@@ -7,12 +7,9 @@ package commands;
 import dto.AccountDTO;
 import dto.TransactionsDTO;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 /**
@@ -21,8 +18,8 @@ import servlets.Factory;
  */
 public class NewTransactionCommand extends TargetCommand {
 
-    public NewTransactionCommand(String target) {
-        super(target);
+    public NewTransactionCommand(String target,SecurityRole role) {
+        super(target,role);
     }
 
     @Override
@@ -43,7 +40,7 @@ public class NewTransactionCommand extends TargetCommand {
         } else {
             String error = "Culd not create transaction. Please insert data in all fields.";
             request.setAttribute("errorincreating", error);
-            Command command = servlets.Factory.getInstance().getCommand("gotomakenewtransaction");
+            Command command = servlets.Factory.getInstance().getCommand("gotomakenewtransaction",request);
             String path = command.execute(request);
             return path;
         }

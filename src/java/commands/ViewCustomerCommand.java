@@ -5,6 +5,7 @@ import dto.CustomerAccountsDTO;
 import dto.CustomerDTO;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 /**
@@ -12,8 +13,8 @@ import servlets.Factory;
  */
 public class ViewCustomerCommand extends TargetCommand{
 
-  public ViewCustomerCommand(String target) {
-    super(target);
+  public ViewCustomerCommand(String target,SecurityRole role) {
+    super(target,role);
   }
 
   @Override

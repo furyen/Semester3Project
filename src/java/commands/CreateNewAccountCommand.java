@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 /**
@@ -23,8 +24,8 @@ import servlets.Factory;
  */
 public class CreateNewAccountCommand extends TargetCommand {
 
-    public CreateNewAccountCommand(String target) {
-        super(target);
+    public CreateNewAccountCommand(String target,SecurityRole role) {
+        super(target,role);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class CreateNewAccountCommand extends TargetCommand {
             String error = "Culd not create account. Please insert data in all fields.";
             request.setAttribute("errorincreating", error);
             request.setAttribute("username", username);
-            Command command = servlets.Factory.getInstance().getCommand("gotoaddaccount");
+            Command command = servlets.Factory.getInstance().getCommand("gotoaddaccount",request);
             String path = command.execute(request);
             return path;
         }

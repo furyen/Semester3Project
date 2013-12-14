@@ -67,7 +67,7 @@
        <h1>Log in as Bank Teller</h1>
         <div style="color: red;">${error}</div>
         <form action="Controller" method="post">
-            <input type="hidden" name="command" value="emplogin"/>
+            <input type="hidden" name="command" value="login"/>
             <label>
             Username:
             <br/>

@@ -4,53 +4,49 @@
  */
 package commands;
 
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 /**
  *
  * @author hsty
  */
-public class LoginCommand extends TargetCommand {
+public class LoginCommand implements Command {
 
-    public LoginCommand(String target, String title) {
-        super(target, title);
+    private final Map<SecurityRole, String> roleToTarget;
+    private final String loginFailed;
+
+    public LoginCommand(Map<SecurityRole, String> targetRoles, String logInFaildedPage) {
+        this.roleToTarget = targetRoles;
+        this.loginFailed = logInFaildedPage;
     }
 
     @Override
     public String execute(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String loginType = request.getParameter("command");
-        System.out.println("login: " + username);
-        Boolean success;
-
-        switch (loginType) {
-            case "emplogin":
-                success = Factory.getInstance().getBankManager().empLogin(username, password);
-                break;
-            case "custlogin":
-                success = Factory.getInstance().getBankManager().custLogin(username, password);
-                break;
-            default:
-                throw new AssertionError();
-        }
-        if (success) {
-
-            request.getSession().setAttribute("username", username);
-            request.getSession().setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
-            String lastCommand = (String) request.getSession()
-                    .getAttribute("lastcommand");
-            if (lastCommand != null) {
-                Command command = Factory.getInstance().getCommand(lastCommand);
-                String path = command.execute(request);
-                return path;
+        String nextPage = loginFailed;
+        try {
+            //This performs a programatic login
+            request.login(username, password);
+            //Set next page depending on the users role
+            for (SecurityRole role : roleToTarget.keySet()) {
+                if (request.isUserInRole(role.toString())) {
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
+                    nextPage = roleToTarget.get(role);
+                    break;
+                }
             }
-            return super.execute(request);
-
-        } else {
-            request.setAttribute("error", "Error: wrong username or password");
-            return "/login.jsp";
+        } catch (ServletException ex) {
+            request.setAttribute("loginerror", "You failed to login");
+            Logger.getLogger(LoginCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
+     return nextPage;
     }
 }

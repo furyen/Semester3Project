@@ -8,6 +8,7 @@ import dto.AccountDTO;
 import dto.TransactionsDTO;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 /**
@@ -16,8 +17,8 @@ import servlets.Factory;
  */
 public class ViewTransactionsCommand extends TargetCommand {
 
-    public ViewTransactionsCommand(String target, String title) {
-        super(target, title);
+    public ViewTransactionsCommand(String target, String title,SecurityRole role) {
+        super(target, title,role);
     }
 
     @Override

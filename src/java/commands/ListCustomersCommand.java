@@ -4,12 +4,13 @@ import dto.CustomerDTO;
 import servlets.Factory;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 
 public class ListCustomersCommand extends TargetCommand {
 
-    public ListCustomersCommand(String target) {
-        super(target);
+    public ListCustomersCommand(String target,SecurityRole role) {
+        super(target,role);
     }
 
     @Override

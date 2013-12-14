@@ -7,6 +7,7 @@ package commands;
 import dto.AccountDTO;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 import servlets.Factory;
 
 
@@ -19,8 +20,8 @@ public class ListAccountsCommand extends TargetCommand {
     return super.execute(request); 
     }
 
-    public ListAccountsCommand(String target) {
-        super(target);
+    public ListAccountsCommand(String target,SecurityRole role) {
+        super(target,role);
     }
     
 }

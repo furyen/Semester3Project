@@ -5,6 +5,7 @@
 package commands;
 
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  *
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class LogoutCommand extends TargetCommand {
 
-    public LogoutCommand(String target) {
-        super(target);
+    public LogoutCommand(String target,SecurityRole role) {
+        super(target,role);
     }
 
     @Override
