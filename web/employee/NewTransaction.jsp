@@ -1,9 +1,5 @@
-<%-- 
-    Document   : NewTransaction
-    Created on : Oct 10, 2013, 12:33:19 PM
-    Author     : TheOneX
---%>
-
+<link rel="stylesheet" type="text/css" href="../Semester3Project/my.css">
+<%@include file="../WEB-INF/jspf/header.jspf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

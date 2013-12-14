@@ -1,12 +1,15 @@
 <%@include file="../WEB-INF/jspf/header.jspf" %>
+<link rel="stylesheet" type="text/css" href="../Semester3Project/my.css">
+
 <title>Employee Menu</title>
-        <div class="myclass">Welcome ${username}</div>
-        <div>
+        <div class="inlineDiv">Welcome ${username}</div>
+        <br>
+        
+        <div class="inlineDiv">
             <form action="Controller">
                 <input type="hidden" name="command" value="listcustomer">
-                <p><input type="submit" value="See Customers"></p>
+                <input type="submit" value="See Customers">
             </form>
         </div>
-        <p><a href="Controller?command=logout_command">Logout</a></p>
 
 <%@include file="../WEB-INF/jspf/footer.jspf" %>

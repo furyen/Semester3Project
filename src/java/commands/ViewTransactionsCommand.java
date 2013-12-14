@@ -17,18 +17,20 @@ import servlets.Factory;
  */
 public class ViewTransactionsCommand extends TargetCommand {
 
-    public ViewTransactionsCommand(String target, String title,SecurityRole role) {
-        super(target, title,role);
+    public ViewTransactionsCommand(String target, String title, SecurityRole role) {
+        super(target, title, role);
     }
 
     @Override
     public String execute(HttpServletRequest request) {
         String idAccount = request.getParameter("accountid");
         int accountId = Integer.parseInt(idAccount);
-        AccountDTO account= Factory.getInstance().getBankManager().getAccount(accountId);
-        Collection<TransactionsDTO> transactions = Factory.getInstance().getBankManager().getAccountTransactions(accountId);
+        AccountDTO account = Factory.getInstance().getBankManager().getAccount(accountId);
+        Collection<TransactionsDTO> incoming = Factory.getInstance().getBankManager().getIncomingTransactions(accountId);
+        Collection<TransactionsDTO> outgoing = Factory.getInstance().getBankManager().getOutgoingTransactions(accountId);
         request.setAttribute("account", account);
-        request.setAttribute("transactions", transactions);
+        request.setAttribute("incoming", incoming);
+        request.setAttribute("outgoing", outgoing);
         return super.execute(request);
     }
 }

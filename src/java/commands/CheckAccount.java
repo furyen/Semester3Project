@@ -17,7 +17,7 @@ import servlets.Factory;
  *
  * @author Petko
  */
-@WebServlet(name = "checkAccount", urlPatterns = {"/checkAccount"})
+@WebServlet(name = "CheckAccount", urlPatterns = {"/CheckAccount"})
 public class CheckAccount extends HttpServlet {
 
     /**
@@ -38,7 +38,7 @@ public class CheckAccount extends HttpServlet {
         try {
             String recipient = request.getParameter("recipient");
             boolean accountExists = Factory.getInstance().getBankManager().accountAvailable(recipient);
-            if (!accountExists) {
+            if (accountExists) {
                 strStatus = "Recipient account does not exist"; // Return Exist Msg
             }
         } catch (Exception e) {

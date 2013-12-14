@@ -66,7 +66,6 @@ public class Factory {
         commands.put("makenewtransaction", new NewTransactionCommand("employee/ViewTransactions.jsp", SecurityRole.Employees));
         commands.put("gotoaddaccount", new ViewCustomerCommand("employee/CreateNewAccount.jsp", SecurityRole.Employees));
         commands.put("addaccount", new CreateNewAccountCommand("employee/ViewCustomer.jsp", SecurityRole.Employees));
-        commands.put("emplogin", new TargetCommand("employee/Main.jsp", "Employee Login", SecurityRole.Employees));
         commands.put("viewcustomer", new ViewCustomerCommand("employee/ViewCustomer.jsp", SecurityRole.Employees));
         commands.put("listcustomer", new ListCustomersCommand("employee/ListCustomers.jsp", SecurityRole.Employees));
         commands.put("addcustomer", new AddCustomerCommand("employee/AddCustomer.jsp", SecurityRole.Employees));
@@ -74,7 +73,9 @@ public class Factory {
         //customer side commands
         commands.put("custmain", new TargetCommand("customer/Main.jsp", "Main Page", SecurityRole.Customers));
         commands.put("custchat", new TargetCommand("customer/Chat.jsp", "Chat Page", SecurityRole.Customers));
-        commands.put("custlogin", new TargetCommand("customer/Main.jsp", "Customer Login", SecurityRole.Customers));
+        commands.put("custnewaccountpage", new ViewCustomerCommand("customer/CreateNewAccount.jsp", SecurityRole.Customers));
+        commands.put("custnewaccount", new CreateNewAccountCommand("customer/ViewCustomer.jsp", SecurityRole.Customers));
+        commands.put("custdata", new ViewCustomerCommand("customer/ViewCustomer.jsp", SecurityRole.Customers));
         commands.put("viewowntransactions", new ViewTransactionsCommand("customer/ViewTransactions.jsp", "Transactions", SecurityRole.Customers));
         commands.put("gotomakenewowntransaction", new ViewTransactionsCommand("customer/NewTransaction.jsp", "Create new transaction", SecurityRole.Customers));
         commands.put("makenewowntransaction", new NewTransactionCommand("customer/ViewTransactions.jsp", SecurityRole.Customers));
@@ -93,9 +94,10 @@ public class Factory {
     }
 
     public Command getCommand(String cmdStr, HttpServletRequest request) {
+      
         if (cmdStr == null) {
             cmdStr = "showlogin";
-        }
+        } 
         Command cmd = commands.get(cmdStr);
 
         //The most important place in terms of security.

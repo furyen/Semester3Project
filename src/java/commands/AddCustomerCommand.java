@@ -19,7 +19,7 @@ public class AddCustomerCommand extends TargetCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String firstname = request.getParameter("fisrtname");
+        String firstname = request.getParameter("firstname");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String lastname = request.getParameter("lastname");

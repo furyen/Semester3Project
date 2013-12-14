@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class Controller extends HttpServlet {
 
     static final long TIME_OUT = 5000;
-    private final int PORT_NON_SSL=8080;
+    private final int PORT_NON_SSL = 8080;
     private final int PORT_SSL = 8181;
 
     /**
@@ -39,9 +39,9 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+      
         String cmdStr = request.getParameter("command");
         Command command = Factory.getInstance().getCommand(cmdStr, request);
-        System.out.println("command " + cmdStr );
         String path = command.execute(request);
 
         if (command instanceof ShowLoginCommand && !request.isSecure()) {
@@ -95,6 +95,7 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    //not used currently
     private boolean notTimedOut(HttpSession session) {
         long lastTime = session.getLastAccessedTime();
         long currentTime = new Date().getTime();

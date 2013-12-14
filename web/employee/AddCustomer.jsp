@@ -1,9 +1,5 @@
-<%-- 
-    Document   : addCustomer
-    Created on : 24-09-2013, 09:45:31
-    Author     : lam
---%>
-
+<%@include file="../WEB-INF/jspf/header.jspf" %>
+<link rel="stylesheet" type="text/css" href="../Semester3Project/my.css">
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -113,22 +109,30 @@
     </head>
     <body>
         <h1>Add customer</h1>
-        <div style="color: red;">${errorincreating}</div>
+        <div style="color: red;  ">${errorincreating }</div>
         <form id="addCustomer" action="Controller">
+            <div class="inlineDiv" style="text-align: left ">
+                <fieldset>
+                    <label for="phone">Phone:</label>
+                    <input type='text' name='phone' id='phone'><br> <button type="button" id="phoneGet">Get Address from phone</button>
+                    <label for="firstname"> First Name:</label>
+                    <input type='text' name='firstname' id='firstname'><br>
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" name="lastname" id="lastname" />
+                    <label for="mail">E-mail:</label>
+                    <input type="text" name="mail" id="mail" />
+                    <div id="checkResult"><br></div>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" />
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" />
+                    <input type="hidden" name="command" value="addcustomer">
+                    <input type="submit" id="create" value="Create customer">
+                </fieldset>
 
-            <p>First Name:<input type='text' name='fisrtname' id='firstname'></p>
-            <p>Last Name:<input type='text' name='lastname' id='lastname'></p>
-            <p>E-mail:<input type='text' name='mail' id='mail'></p>
-            <p>Phone:<input type='text' name='phone' id='phone'><button type="button" id="phoneGet">Get Address from phone</button></p>
-            <div id="checkResult"></div>
-            <p> Username:<input type='text' name='username' id='username'></p>
-            <p>Password:<input type='password' name='password' id='password'></p>
-            <input type="hidden" name="command" value="addcustomer">
-            <input type="submit" id="create" value="Create customer">
 
+            </div>
         </form>
         <p id="errorp"></p>
-        <a href="Controller?command=main">Goto main page</a>
-        <a href="Controller?command=listcustomers">See all customers</a>
     </body>
 </html>

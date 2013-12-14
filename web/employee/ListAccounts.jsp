@@ -1,9 +1,5 @@
-<%-- 
-    Document   : ListAccounts
-    Created on : Oct 8, 2013, 5:41:07 PM
-    Author     : Petko
---%>
-
+<link rel="stylesheet" type="text/css" href="../Semester3Project/my.css">
+<%@include file="../WEB-INF/jspf/header.jspf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>

@@ -1,8 +1,5 @@
-<%-- 
-    Document   : Chat
-    Created on : Dec 14, 2013, 12:44:18 AM
-    Author     : Petko
---%>
+<%@include file="../WEB-INF/jspf/header.jspf" %>
+<link rel="stylesheet" type="text/css" href="../Semester3Project/my.css">
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

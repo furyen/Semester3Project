@@ -33,11 +33,15 @@ public class LoginCommand implements Command {
         String nextPage = loginFailed;
         try {
             //This performs a programatic login
-            request.login(username, password);
+            if(request.getRemoteUser()==null){
+                request.login(username, password);
+            } else {
+                username=request.getRemoteUser();
+            }
             //Set next page depending on the users role
             for (SecurityRole role : roleToTarget.keySet()) {
                 if (request.isUserInRole(role.toString())) {
-                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("username", request.getRemoteUser());
                     request.getSession().setAttribute("customer", Factory.getInstance().getBankManager().getCustomer(username));
                     nextPage = roleToTarget.get(role);
                     break;

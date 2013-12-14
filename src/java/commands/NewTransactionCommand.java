@@ -30,12 +30,14 @@ public class NewTransactionCommand extends TargetCommand {
         String idAccount = request.getParameter("accountid");
         int accountId = Integer.parseInt(idAccount);
 
-        if ((amount.compareTo(BigDecimal.ZERO) > 0) && !info.isEmpty()) {
+        if ((amount.compareTo(BigDecimal.ZERO) > 0) && !info.isEmpty() && Factory.getInstance().getBankManager().getAccount(accountId).getBalance().compareTo(amount)!=-1) {
             Factory.getInstance().getBankManager().createTransaction(new TransactionsDTO(recipient, amount, accountId));
             AccountDTO account = Factory.getInstance().getBankManager().getAccount(accountId);
-            Collection<TransactionsDTO> transactions = Factory.getInstance().getBankManager().getAccountTransactions(accountId);
+            Collection<TransactionsDTO> incoming = Factory.getInstance().getBankManager().getIncomingTransactions(accountId);
+            Collection<TransactionsDTO> outgoing = Factory.getInstance().getBankManager().getOutgoingTransactions(accountId);
             request.setAttribute("account", account);
-            request.setAttribute("transactions", transactions);
+            request.setAttribute("incoming", incoming);
+            request.setAttribute("outgoing", outgoing);
             return super.execute(request);
         } else {
             String error = "Culd not create transaction. Please insert data in all fields.";
